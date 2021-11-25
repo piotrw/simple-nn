@@ -1,0 +1,25 @@
+{
+  "name": "piotrw/simple-nn",
+  "description": "Simple Neural Network in PHP-OOP",
+  "minimum-stability": "alpha",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Piotr Wysocki",
+      "email": "garry@aikido.art.pl"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SimpleNN\\": "src/SimpleNN"
+    }
+  },
+  "require": {
+    "php": ">=7.0",
+    "numphp/numphp": "^1.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  }
+}

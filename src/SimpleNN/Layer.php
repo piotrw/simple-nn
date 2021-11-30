@@ -6,6 +6,7 @@ namespace SimpleNN;
 
 use NumPHP\Core\NumArray;
 use NumPHP\Core\NumPHP\Generate;
+use SimpleNN\Tools\Matrix;
 
 class Layer
 {
@@ -18,9 +19,9 @@ class Layer
      */
     protected NumArray $biases;
     /**
-     * @var array
+     * @var mixed
      */
-    protected array $output;
+    protected $output;
 
     /**
      * Layer constructor.
@@ -37,7 +38,7 @@ class Layer
      * @param $inputs
      * @return array|mixed
      */
-    public function forward($inputs): array
+    public function oldForward($inputs): array
     {
         $inputs = new NumArray($inputs);
 
@@ -48,6 +49,20 @@ class Layer
             ->getTranspose()
             ->getData();
 
+        return $this->output;
+    }
+
+    /**
+     * Forward method
+     * todo benchmark this
+     * @param $inputs
+     * @return array|mixed
+     */
+    public function forward($inputs): array
+    {
+        $inputs = new NumArray($inputs);
+        $this->output = $inputs->dot($this->weights);
+        $this->output = Matrix::addVector($this->output, $this->biases);
         return $this->output;
     }
 

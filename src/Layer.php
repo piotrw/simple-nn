@@ -21,7 +21,7 @@ class Layer
     /**
      * @var mixed
      */
-    protected $output;
+    protected $output = [];
 
     /**
      * Layer constructor.
@@ -31,38 +31,19 @@ class Layer
     public function __construct(int $numberInputs, int $numberNeurons)
     {
         $this->weights = new NumArray(Generate::generateArray([$numberInputs, $numberNeurons]));
-        $this->biases = new NumArray(Generate::generateArray([1, $numberNeurons], 0)[0]);
-    }
-
-    /**
-     * @param $inputs
-     * @return array|mixed
-     */
-    public function oldForward($inputs): array
-    {
-        $inputs = new NumArray($inputs);
-
-        $this->output = $inputs
-            ->dot($this->weights)
-            ->getTranspose()
-            ->add($this->biases)
-            ->getTranspose()
-            ->getData();
-
-        return $this->output;
+        $this->biases = new NumArray(Generate::generateArray([1, $numberNeurons], 1)[0]);
     }
 
     /**
      * Forward method
-     * todo benchmark this
-     * @param $inputs
+     * @param array $inputs
      * @return array|mixed
      */
-    public function forward($inputs): array
+    public function forward(array $inputs): array
     {
         $inputs = new NumArray($inputs);
-        $this->output = $inputs->dot($this->weights);
-        $this->output = Matrix::addVector($this->output, $this->biases);
+        $inputs->dot($this->weights);
+        $this->output = Matrix::addColumnVector($inputs, $this->biases);
         return $this->output;
     }
 

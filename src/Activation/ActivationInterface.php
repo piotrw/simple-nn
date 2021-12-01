@@ -6,7 +6,7 @@ namespace SimpleNN\Activation;
 /**
  * Activation
  */
-interface ActivationInterrface
+interface ActivationInterface
 {
     /**
      * Activation

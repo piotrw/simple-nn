@@ -2,7 +2,7 @@
 
 namespace SimpleNN\Activation;
 
-class Step implements ActivationInterrface
+class Step implements ActivationInterface
 {
     /**
      * @var mixed

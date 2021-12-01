@@ -9,7 +9,7 @@ use SimpleNN\Tools\Matrix;
 /**
  * ReLU - Rectified Linear Unit
  */
-class ReLU implements ActivationInterrface
+class ReLU implements ActivationInterface
 {
     /**
      * @var mixed

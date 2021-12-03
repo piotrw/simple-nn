@@ -6,7 +6,6 @@ namespace SimpleNN;
 
 use NumPHP\Core\NumArray;
 use NumPHP\Core\NumPHP;
-use NumPHP\Core\NumPHP\Generate;
 use SimpleNN\Tools\Matrix;
 
 class Layer

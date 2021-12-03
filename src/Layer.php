@@ -5,6 +5,7 @@ namespace SimpleNN;
 
 
 use NumPHP\Core\NumArray;
+use NumPHP\Core\NumPHP;
 use NumPHP\Core\NumPHP\Generate;
 use SimpleNN\Tools\Matrix;
 
@@ -30,8 +31,8 @@ class Layer
      */
     public function __construct(int $numberInputs, int $numberNeurons)
     {
-        $this->weights = new NumArray(Generate::generateArray([$numberInputs, $numberNeurons]));
-        $this->biases = new NumArray(Generate::generateArray([1, $numberNeurons], 1)[0]);
+        $this->weights = NumPHP::rand($numberInputs, $numberNeurons);
+        $this->biases = NumPHP::ones($numberNeurons);
     }
 
     /**

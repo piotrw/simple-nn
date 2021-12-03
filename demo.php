@@ -23,9 +23,9 @@ $activation1 = new Activation\ReLU();
 $activation2 = new Activation\ReLU(); // todo SoftPlus
 
 // Forward network
+$layer1->forward($X);
 $activation1->forward($layer1->getOutput());
 $layer2->forward($activation1->getOutput());
-$layer1->forward($X);
 $activation2->forward($layer2->getOutput());
 
 // display output of network

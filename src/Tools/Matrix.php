@@ -40,4 +40,16 @@ class Matrix
             return $np->add($vector)->getData();
         }, $matrix);
     }
+
+    /**
+     * Translates slice arrays to concatenation along the second axis.
+     *
+     * @param $array1
+     * @param $array2
+     * @return array
+     */
+    public static function _c($array1, $array2): array
+    {
+        return array_map(fn($i, $j) => [$i, $j], $array1, $array2);
+    }
 }

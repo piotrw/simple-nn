@@ -2,29 +2,22 @@
 
 namespace SimpleNN\Activation;
 
-
-/**
- * ReLU - Rectified Linear Unit
- */
-class ReLU extends AbstractActivation
+class LeakyReLU extends AbstractActivation
 {
+
     /**
-     * Activation
-     *
-     * @param array $inputs
-     * @return array
+     * @inheritDoc
      */
-    public function forward(array $inputs): array
+    public function forward(array $inputs)
     {
         $this->output = array_map(function ($value) {
             if(is_array($value)) {
                 return $this->forward($value);
             }
 
-            return max(0, $value);
+            return max(0.1 * $value, $value);
         }, $inputs);
 
         return $this->output;
     }
-
 }

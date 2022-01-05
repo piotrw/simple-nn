@@ -2,14 +2,16 @@
 
 namespace SimpleNN\Activation;
 
-class Step implements ActivationInterface
+/**
+ * Binary Step Activation Function
+ */
+class Step extends AbstractActivation
 {
     /**
-     * @var mixed
+     * @param array $inputs
+     * @return array
      */
-    protected $output = [];
-
-    public function forward(array $inputs)
+    public function forward(array $inputs): array
     {
         $this->output = array_map(function ($value) {
             if(is_array($value)) {
@@ -19,14 +21,6 @@ class Step implements ActivationInterface
             return $value > 0 ? 1 : 0;
         }, $inputs);
 
-        return $this->output;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOutput()
-    {
         return $this->output;
     }
 }

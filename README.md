@@ -1,8 +1,10 @@
 # SimpleNN
 
 Simple Neural Network implementation in PHP-OOP.
-
 Just for fun.
+
+Inspired by Sentdex tutorial 
+https://github.com/Sentdex/NNfSiX
 
 ## Prerequisite
 * php > 7.4
@@ -21,11 +23,12 @@ php demo.php
 ```
 
 File demo.php contains:
+
 ```php
 <?php
  
 use NumPHP\Core\NumArray;
-use SimpleNN\Activation;
+use SimpleNN\AbstractActivation;
 use SimpleNN\Layer;
 
 require_once "vendor/autoload.php";
@@ -53,5 +56,5 @@ $layer2->forward($activation1->getOutput());
 $activation2->forward($layer2->getOutput());
 
 // display output of network
-echo new NumArray($activation2->getOutput());
+\SimpleNN\Tools\Matrix::print($activation2->getOutput());
 ```

@@ -1,23 +1,21 @@
 <?php
-
+declare(strict_types=1);
 
 namespace SimpleNN;
 
 
-use NumPHP\Core\NumArray;
-use NumPHP\Core\NumPHP;
 use SimpleNN\Tools\Matrix;
 
 class Layer
 {
     /**
-     * @var NumArray
+     * @var array
      */
-    protected NumArray $weights;
+    protected array $weights;
     /**
-     * @var NumArray
+     * @var array
      */
-    protected NumArray $biases;
+    protected array $biases;
     /**
      * @var mixed
      */
@@ -30,20 +28,20 @@ class Layer
      */
     public function __construct(int $numberInputs, int $numberNeurons)
     {
-        $this->weights = NumPHP::rand($numberInputs, $numberNeurons);
-        $this->biases = NumPHP::ones($numberNeurons);
+        $this->weights = Matrix::randn($numberInputs, $numberNeurons);
+        $this->biases = Matrix::ones($numberNeurons);
     }
 
     /**
      * Forward method
      * @param array $inputs
      * @return array|mixed
+     * @throws Exception\InvalidArgumentException
      */
     public function forward(array $inputs): array
     {
-        $inputs = new NumArray($inputs);
-        $inputs->dot($this->weights);
-        $this->output = Matrix::addColumnVector($inputs, $this->biases);
+        $result = Matrix::dot($inputs, $this->weights);
+        $this->output = Matrix::add($result, $this->biases);
         return $this->output;
     }
 

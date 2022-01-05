@@ -3,6 +3,7 @@
 namespace SimpleNN\Tools;
 
 
+use SimpleNN\Exception\InvalidArgumentException;
 use SimpleNN\Num\Add;
 use SimpleNN\Num\Dot;
 
@@ -52,7 +53,7 @@ class Matrix
             $row .= $offset . self::printRecursive($sub, $level) . $separator;
         }
 
-        return sprintf('[%s]', rtrim($row, $separator) );
+        return sprintf('[%s]', rtrim($row, $separator));
     }
 
     /**
@@ -119,8 +120,8 @@ class Matrix
     /**
      * @param array $inputs
      * @param array $weights
-     * @return float
-     * @throws \SimpleNN\Exception\InvalidArgumentException
+     * @return mixed
+     * @throws InvalidArgumentException
      */
     public static function dot(array $inputs, array $weights)
     {
@@ -130,8 +131,8 @@ class Matrix
     /**
      * @param array $result
      * @param array $biases
-     * @return float|int|mixed
-     * @throws \SimpleNN\Exception\InvalidArgumentException
+     * @return mixed
+     * @throws InvalidArgumentException
      */
     public static function add(array $result, array $biases)
     {
